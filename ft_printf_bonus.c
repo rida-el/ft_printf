@@ -6,7 +6,7 @@
 /*   By: rel-maza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:19:57 by rel-maza          #+#    #+#             */
-/*   Updated: 2021/12/16 18:30:36 by rel-maza         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:41:36 by rel-maza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	ft_print(const char form, va_list args, char flag, int *count)
 		ft_putchar('%', count);
 }
 
-int ft_printf(const char *form, ...)
+int	ft_printf(const char *form, ...)
 {
-	va_list args;
-	int i;
-	char flag;
-	int count;
+	va_list	args;
+	int		i;
+	char	flag;
+	int		count;
 
 	count = 0;
 	i = 0;
@@ -103,13 +103,14 @@ int ft_printf(const char *form, ...)
 			ft_print(form[i + 1], args, flag, &count);
 			i += 2;
 		}
-		else if (form[i] == '%' && (form[i + 1] == '+'
-				|| form[i + 1] == ' ' || form[i + 1] == '#')
-				&& ft_check(form[i + 2]))
+		else if (form[i] == '%' && ft_check(form[i + 2]))
 		{
-			flag = form[i + 1];
-			ft_print(form[i + 2], args, flag, &count);
-			i += 3;
+			if (form[i + 1] == '+' || form[i + 1] == ' ' || form[i + 1] == '#')
+			{
+				flag = form[i + 1];
+				ft_print(form[i + 2], args, flag, &count);
+				i += 3;
+			}
 		}
 		else
 		{
@@ -120,9 +121,3 @@ int ft_printf(const char *form, ...)
 	va_end(args);
 	return (count);
 }
-
-// int main()
-// {
-// 	ft_printf("%#x\n",0);
-// 	printf("%#x\n",0);
-// }
