@@ -6,7 +6,7 @@
 /*   By: rel-maza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:05:09 by rel-maza          #+#    #+#             */
-/*   Updated: 2021/12/16 15:58:33 by rel-maza         ###   ########.fr       */
+/*   Updated: 2021/12/18 14:30:10 by rel-maza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_check(char const c)
 	return (0);
 }
 
-void	ft_print(const char form, va_list args, char flag, int *count)
+void	ft_print(const char form, va_list args, int *count)
 {
 	if (form == 'd' || form == 'i')
 		ft_putnbr((va_arg(args, int)), count);
@@ -53,7 +53,6 @@ int	ft_printf(const char *form, ...)
 {
 	va_list	args;
 	int		i;
-	char	flag;
 	int		count;
 
 	count = 0;
@@ -61,10 +60,9 @@ int	ft_printf(const char *form, ...)
 	va_start(args, form);
 	while (form[i])
 	{
-		flag = '0';
 		if (form[i] == '%' && ft_check(form[i + 1]))
 		{
-			ft_print(form[i + 1], args, flag, &count);
+			ft_print(form[i + 1], args, &count);
 			i += 2;
 		}
 		else

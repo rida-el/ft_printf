@@ -6,7 +6,7 @@
 /*   By: rel-maza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:21:19 by rel-maza          #+#    #+#             */
-/*   Updated: 2021/12/15 16:48:12 by rel-maza         ###   ########.fr       */
+/*   Updated: 2021/12/18 14:21:42 by rel-maza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,5 @@ void	ft_putnbr_unsigned(unsigned int n, int *count)
 	{
 		ft_putnbr((n / 10), count);
 		ft_putnbr((n % 10), count);
-	}
-	else if (n < 0)
-	{
-		ft_putchar(('-'), count);
-		ft_putnbr((n * -1), count);
 	}
 }
